@@ -1,14 +1,13 @@
 import pool from "../config/dbConfig.js";
 
-export const executeQuery = async (query) => {
-    let client
+export const executeQuery = async ({ text, values = [], client = null }) => {
+  const useClient = client || (await pool.connect());
   try {
-    client = await pool.connect();
-    const result = await client.query(query);
+    const result = await useClient.query(text, values);
     return result;
   } finally {
-    if (client) {
-      client.release();
+    if (!client && useClient) {
+      useClient.release(); 
     }
   }
 };

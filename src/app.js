@@ -13,16 +13,15 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use((req, res, next) => {
   const originalJson = res.json;
 
   res.sendResponse = (body) => {
-    res.locals.body = body; 
-    return originalJson.call(res, body); 
+    res.locals.body = body;
+    return originalJson.call(res, body);
   };
 
-  res.json = res.sendResponse; 
+  res.json = res.sendResponse;
   next();
 });
 app.use((req, res, next) => {
@@ -64,7 +63,6 @@ app.get("/", async (_req, res, next) => {
     next(err);
   }
 });
-
 
 app.use((err, _req, res, _next) => {
   logger.error(err);
