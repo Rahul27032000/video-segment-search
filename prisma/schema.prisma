@@ -13,3 +13,45 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Video {
+  id        Int       @id @default(autoincrement())
+  title     String?
+  url       String?
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime? @updatedAt @db.Timestamptz(3)
+}
+
+model Chunk {
+  id        Int                         @id @default(autoincrement())
+  startTime Int
+  endTime   Int
+  text      String?
+  embedding Unsupported("vector(1536)")
+  videoId   Int
+
+  @@index([embedding])
+}
+
+model VideoChunkMap {
+  id        Int       @id @default(autoincrement())
+  videoId   Int
+  chunkId   Int
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime? @updatedAt @db.Timestamptz(3)
+  @@unique([videoId, chunkId])
+}
+
+
+model Log {
+  id                 Int         @id @default(autoincrement())
+  requestCode        String
+  requestMethod      String
+  requestUrl         String
+  requestedAt        DateTime    @default(now()) @db.Timestamptz(3)
+  responseStatusCode Int
+  responseAt         DateTime    @db.Timestamptz(3)
+  log                Json
+}
