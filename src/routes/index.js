@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { searchBestChunk } from '../services/searchService.js';
+import { ingestFromYouTube, ingestTranscriptHandler,ingestWithTranscriptBody } from '../services/ingestService.js';
 
 const router = Router();
 
@@ -16,5 +17,8 @@ router.get('/search', async (req, res, next) => {
     next(err);
   }
 });
-
+ 
+router.post('/videos/:videoId/transcript', ingestTranscriptHandler);
+router.post('/videos/youtube', ingestFromYouTube);
+router.post('/videos/manual', ingestWithTranscriptBody);
 export default router;

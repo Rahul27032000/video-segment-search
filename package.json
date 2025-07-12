@@ -25,6 +25,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^6.11.1",
+    "axios": "^1.10.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "esbuild": "^0.25.6",
@@ -38,7 +39,12 @@
     "pg": "^8.16.3",
     "pgvector": "^0.2.1",
     "winston": "^3.17.0",
-    "winston-transport": "^4.9.0"
+    "winston-transport": "^4.9.0",
+    "xml2js": "^0.6.2",
+    "youtube-captions-scraper": "^2.0.3",
+    "youtube-transcript": "^1.2.1",
+    "yt-dlp-wrap": "^2.3.12",
+    "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
     "prisma": "^6.11.1"
