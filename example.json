@@ -1,0 +1,103 @@
+[
+    {
+      "start": 0,
+      "end": 5,
+      "text": "Welcome to this deep dive into JavaScript, the language of the web."
+    },
+    {
+      "start": 5,
+      "end": 10,
+      "text": "Today we’re going to look at how JavaScript works under the hood."
+    },
+    {
+      "start": 10,
+      "end": 15,
+      "text": "First, let’s understand how JavaScript is executed inside the browser."
+    },
+    {
+      "start": 15,
+      "end": 20,
+      "text": "Every browser has a JavaScript engine. Chrome uses V8, Firefox uses SpiderMonkey."
+    },
+    {
+      "start": 20,
+      "end": 25,
+      "text": "The engine takes your JS code, parses it, and then executes it line by line."
+    },
+    {
+      "start": 25,
+      "end": 30,
+      "text": "JavaScript is single-threaded, meaning it runs one thing at a time."
+    },
+    {
+      "start": 30,
+      "end": 35,
+      "text": "But thanks to the event loop, it can handle asynchronous operations like network requests."
+    },
+    {
+      "start": 35,
+      "end": 40,
+      "text": "Let’s look at variables. JavaScript has var, let, and const."
+    },
+    {
+      "start": 40,
+      "end": 45,
+      "text": "Var is function-scoped, while let and const are block-scoped."
+    },
+    {
+      "start": 45,
+      "end": 50,
+      "text": "Use const by default, and let if the value will change. Avoid var."
+    },
+    {
+      "start": 50,
+      "end": 55,
+      "text": "Next, functions. JavaScript supports function declarations and expressions."
+    },
+    {
+      "start": 55,
+      "end": 60,
+      "text": "Arrow functions are a concise way to write functions, introduced in ES6."
+    },
+    {
+      "start": 60,
+      "end": 65,
+      "text": "Closures are a powerful feature that allow functions to access outer scope variables."
+    },
+    {
+      "start": 65,
+      "end": 70,
+      "text": "This is heavily used in callbacks and asynchronous code."
+    },
+    {
+      "start": 70,
+      "end": 75,
+      "text": "JavaScript also supports objects and prototypes."
+    },
+    {
+      "start": 75,
+      "end": 80,
+      "text": "Objects are key-value pairs, and inheritance is done via the prototype chain."
+    },
+    {
+      "start": 80,
+      "end": 85,
+      "text": "With ES6, we also got classes, which are syntactic sugar over prototypes."
+    },
+    {
+      "start": 85,
+      "end": 90,
+      "text": "Modules allow us to split code across files and import/export functionality."
+    },
+    {
+      "start": 90,
+      "end": 95,
+      "text": "Asynchronous programming is done using callbacks, promises, and async/await."
+    },
+    {
+      "start": 95,
+      "end": 100,
+      "text": "Async/await simplifies working with asynchronous code and makes it easier to read."
+    }
+  ]
+  

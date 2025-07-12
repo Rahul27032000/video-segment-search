@@ -70,7 +70,7 @@ function ManualIngestPage() {
       />
 
       <textarea
-        rows={10}
+        rows={2}
         style={{
           width: "100%",
           marginTop: "1rem",
