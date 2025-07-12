@@ -12,7 +12,8 @@
     "docker:down": "docker-compose down",
     "prisma:deploy": "npx prisma migrate deploy",
     "prisma:reset": "npx prisma migrate reset --force",
-    "setup": "npm run docker:up && sleep 5 && npm run prisma:deploy"
+    "setup": "npm run docker:up && sleep 5 && npm run prisma:deploy",
+    "ingest": "node src/scripts/ingest.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^6.11.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",

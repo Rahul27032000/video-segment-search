@@ -49,4 +49,4 @@ transcripts/
 *.tgz
 docker-data/
 
-/src/generated/prisma
+# /src/generated/prisma

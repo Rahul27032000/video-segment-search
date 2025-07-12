@@ -1,9 +1,10 @@
 import OpenAI from 'openai';
 import fetch, { Headers, Request, Response } from 'node-fetch';
 import { Blob } from 'buffer';
-import { FormData } from 'formdata-node'; // ✅ Add FormData
+import { FormData } from 'formdata-node'; 
+import { OPENAI_API_KEY } from './config.js';
 
-// Polyfill all required Fetch API globals
+
 globalThis.fetch = fetch;
 globalThis.Headers = Headers;
 globalThis.Request = Request;
@@ -12,6 +13,6 @@ globalThis.Blob = Blob;
 globalThis.FormData = FormData; // ✅ Fixes "FormData is not defined"
 
 export const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: OPENAI_API_KEY,
   fetch,
 });

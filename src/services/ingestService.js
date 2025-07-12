@@ -1,30 +1,45 @@
-import { pool } from '../config/dbConfig.js';
-import { executeQuery } from './executeQuery.js';
-import { getTextEmbedding } from './embedService.js';
-
-const CHUNK_SEC = Number(process.env.CHUNK_SECONDS || 15);
+import { pool } from "../config/dbConfig.js";
+import { executeQuery } from "../utils/executeQuery.js";
+import { getTextEmbedding } from "./embedService.js";
 
 export async function ingestTranscript(videoId, transcript) {
   const client = await pool.connect();
   try {
-    await client.query('BEGIN');
+    await client.query("BEGIN");
 
-    const insert =
-      'INSERT INTO chunks (video_id,start_time,end_time,text,embedding) VALUES ($1,$2,$3,$4,$5)';
+    const insertChunk = `
+      INSERT INTO "Chunk" ("videoId", "startTime", "endTime", text, "embedding")
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING id;
+    `;
+
+    const insertMap = `
+      INSERT INTO "VideoChunkMap" ("videoId","chunkId")
+      VALUES ($1,$2);
+    `;
 
     for (const { start, end, text } of transcript) {
       const embedding = await getTextEmbedding(text);
+
+      const {
+        rows: [{ id: chunkId }],
+      } = await executeQuery({
+        text: insertChunk,
+        values: [videoId,start, end, text, `[${embedding.join(',')}]`],
+        client,
+      });
+
       await executeQuery({
-        text: insert,
-        values: [videoId, start, end, text, embedding],
-        client, 
+        text: insertMap,
+        values: [videoId, chunkId],
+        client,
       });
     }
 
-    await client.query('COMMIT');
-  } catch (e) {
-    await client.query('ROLLBACK');
-    throw e;
+    await client.query("COMMIT");
+  } catch (err) {
+    await client.query("ROLLBACK");
+    throw err;
   } finally {
     client.release();
   }
