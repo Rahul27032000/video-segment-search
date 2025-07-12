@@ -9,7 +9,7 @@ export async function searchBestChunk(queryText) {
            c."startTime",
            c."endTime",
            c.text,
-           1 - (c."embedding" <#> $1::vector) AS score    -- 👈 cast placeholder
+           1 - (c."embedding" <#> $1::vector) AS score    
     FROM "Chunk" c
     JOIN "VideoChunkMap" vcm ON c.id = vcm."chunkId"
     WHERE vcm."isActive" = true
@@ -17,6 +17,6 @@ export async function searchBestChunk(queryText) {
     LIMIT 1;
   `;
 
-  const { rows } = await pool.query(sql, [embeddingVec]); // 👈 pass string
+  const { rows } = await pool.query(sql, [embeddingVec]); 
   return rows[0];
 }
